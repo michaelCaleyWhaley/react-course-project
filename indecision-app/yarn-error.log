@@ -1,0 +1,53 @@
+Arguments: 
+  /usr/local/bin/node /usr/local/bin/yarn start
+
+PATH: 
+  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+
+Yarn version: 
+  1.10.1
+
+Node version: 
+  9.8.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  TypeError: "file" argument must be a non-empty string
+      at normalizeSpawnArguments (child_process.js:381:11)
+      at Object.exports.spawn (child_process.js:494:38)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:24353:24
+      at new Promise (<anonymous>)
+      at new F (/usr/local/lib/node_modules/yarn/lib/cli.js:4669:28)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:24352:12
+      at run (/usr/local/lib/node_modules/yarn/lib/cli.js:39864:7)
+      at BlockingQueue.maybePushConcurrencyQueue (/usr/local/lib/node_modules/yarn/lib/cli.js:39879:7)
+      at BlockingQueue.shift (/usr/local/lib/node_modules/yarn/lib/cli.js:39874:10)
+      at /usr/local/lib/node_modules/yarn/lib/cli.js:39818:15
+
+npm manifest: 
+  {
+    "name": "indecision-app",
+    "version": "1.0.0",
+    "main": "index.js",
+    "author": "Michael Caley",
+    "license": "MIT",
+    "dependencies": {
+      "babel-preset-env": "1.5.2",
+      "babel-preset-react": "6.24.1"
+    },
+    "scripts": {
+      "watch": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
+      "server": "live-server public",
+      "start": "",
+      "dev": "live-server public && babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch"
+    },
+    "devDependencies": {}
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
