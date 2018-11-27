@@ -4,7 +4,7 @@
 var app = {
   title: 'The Daily Mail',
   subTitle: 'Nick Cage wins oscar',
-  options: ['One', 'Two']
+  options: []
 };
 
 var getSubTitle = function getSubTitle() {
@@ -13,60 +13,82 @@ var getSubTitle = function getSubTitle() {
   }
 };
 
-var template = React.createElement(
-  'div',
-  null,
-  React.createElement(
-    'h1',
-    null,
-    app.title
-  ),
-  app.subTitle && React.createElement(
-    'p',
-    null,
-    app.subTitle
-  ),
-  React.createElement(
-    'p',
-    null,
-    (app.options && app.options.length) > 0 ? "Here are your options" : "No options"
-  ),
-  React.createElement(
-    'ol',
+var onFormSubmit = function onFormSubmit(e) {
+  e.preventDefault();
+  var option = e.target.elements.option.value;
+  if (option) {
+    app.options.push(option);
+  }
+  renderApp();
+};
+
+var onRemoveAll = function onRemoveAll() {
+  app.options = [];
+  renderApp();
+};
+
+var createOptionsJSX = function createOptionsJSX() {
+  return app.options.map(function (option, index) {
+    return React.createElement(
+      'li',
+      { key: "option:" + index },
+      option
+    );
+  });
+};
+
+var onMakeDecision = function onMakeDecision() {
+  var randomNum = Math.random().floor();
+  console.log(randomNum);
+};
+
+var renderApp = function renderApp() {
+  var template = React.createElement(
+    'div',
     null,
     React.createElement(
-      'li',
+      'h1',
       null,
-      'Item 1'
+      app.title
+    ),
+    app.subTitle && React.createElement(
+      'p',
+      null,
+      app.subTitle
     ),
     React.createElement(
-      'li',
+      'p',
       null,
-      'Item 2'
+      (app.options && app.options.length) > 0 ? "Here are your options" : "No options"
+    ),
+    React.createElement(
+      'button',
+      { onClick: onMakeDecision },
+      'What should I do?'
+    ),
+    React.createElement(
+      'button',
+      { onClick: onRemoveAll },
+      'Remove All'
+    ),
+    React.createElement(
+      'ol',
+      null,
+      createOptionsJSX()
+    ),
+    React.createElement(
+      'form',
+      { onSubmit: onFormSubmit },
+      React.createElement('input', { type: 'text', name: 'option' }),
+      React.createElement(
+        'button',
+        null,
+        'Add Option'
+      )
     )
-  )
-);
-
-// let user = {
-//   name: 'Mike',
-//   age: 29,
-//   location: 'London',
-// };
-
-// const getLocation = (location) => {
-//   if (location) {
-//     return <p>Location: {location}</p>;
-//   }
-// };
-
-// const templateTwo = (
-//   <div>
-//     <h1>{user.name ? user.name : 'Annonymous'}</h1>
-//     {(user.age && user.age >= 18) && <p>Age: {user.age}</p>}
-//     {getLocation(user.location)}
-//   </div>
-// );
+  );
+  ReactDOM.render(template, appRoot);
+};
 
 var appRoot = document.getElementById('app');
-
-ReactDOM.render(template, appRoot);
+renderApp();

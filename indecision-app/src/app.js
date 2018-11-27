@@ -3,48 +3,59 @@
 const app = {
   title: 'The Daily Mail',
   subTitle: 'Nick Cage wins oscar',
-  options: ['One', 'Two']
+  options: []
 };
 
-var getSubTitle = () => {
+const getSubTitle = () => {
   if (app.subTitle) {
-    return ;
+    return;
   }
 };
 
-const template = (
-  <div>
-    <h1>{app.title}</h1>
-    {app.subTitle && <p>{app.subTitle}</p>}
-    <p>{(app.options && app.options.length) > 0 ? "Here are your options" : "No options"}</p>
-    <ol>
-      <li>Item 1</li>
-      <li>Item 2</li>
-      
-    </ol>
-  </div>
-);
+const onFormSubmit = (e) => {
+  e.preventDefault();
+  const option = e.target.elements.option.value;
+  if (option) {
+    app.options.push(option);
+  }
+  renderApp();
+};
 
-// let user = {
-//   name: 'Mike',
-//   age: 29,
-//   location: 'London',
-// };
+const onRemoveAll = () => {
+  app.options = [];
+  renderApp();
+};
 
-// const getLocation = (location) => {
-//   if (location) {
-//     return <p>Location: {location}</p>;
-//   }
-// };
+const createOptionsJSX = () => {
+  return app.options.map((option, index) => <li key={"option:" + index}>{option}</li>);
+};
 
-// const templateTwo = (
-//   <div>
-//     <h1>{user.name ? user.name : 'Annonymous'}</h1>
-//     {(user.age && user.age >= 18) && <p>Age: {user.age}</p>}
-//     {getLocation(user.location)}
-//   </div>
-// );
+const onMakeDecision = () => {
+  const randomNum = Math.random().floor();
+  console.log(randomNum);
+};
+
+const renderApp = () => {
+  const template = (
+    <div>
+      <h1>{app.title}</h1>
+      {app.subTitle && <p>{app.subTitle}</p>}
+      <p>{(app.options && app.options.length) > 0 ? "Here are your options" : "No options"}</p>
+      <button onClick={onMakeDecision}>What should I do?</button>
+      <button onClick={onRemoveAll}>Remove All</button>
+      <ol>
+        {
+          createOptionsJSX()
+        }
+      </ol>
+      <form onSubmit={onFormSubmit}>
+        <input type="text" name="option" />
+        <button>Add Option</button>
+      </form>
+    </div>
+  );
+  ReactDOM.render(template, appRoot);
+};
 
 const appRoot = document.getElementById('app');
-
-ReactDOM.render(template, appRoot);
+renderApp();
