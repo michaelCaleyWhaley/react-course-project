@@ -2,8 +2,8 @@
 
 // JSX
 var app = {
-  title: 'The Daily Mail',
-  subTitle: 'Nick Cage wins oscar',
+  title: 'Indecision',
+  subTitle: 'Put your life in the hands of a computer',
   options: []
 };
 
@@ -48,31 +48,39 @@ var renderApp = function renderApp() {
 
   var template = React.createElement(
     'div',
-    null,
+    { className: 'indec' },
     React.createElement(
-      'h1',
-      null,
-      app.title
-    ),
-    app.subTitle && React.createElement(
-      'p',
-      null,
-      app.subTitle
+      'div',
+      { className: 'indec__header' },
+      React.createElement(
+        'h1',
+        { className: 'indec__title' },
+        app.title
+      ),
+      app.subTitle && React.createElement(
+        'p',
+        { className: 'indec__subtitle' },
+        app.subTitle
+      )
     ),
     React.createElement(
-      'p',
-      null,
-      (app.options && app.options.length) > 0 ? "Here are your options" : "No options"
+      'div',
+      { className: 'indec__option' },
+      React.createElement(
+        'p',
+        null,
+        (app.options && app.options.length) > 0 ? "Your options" : "No options"
+      ),
+      React.createElement(
+        'button',
+        { onClick: onRemoveAll },
+        'Remove All'
+      )
     ),
     React.createElement(
       'button',
       { disabled: length <= 0, onClick: onMakeDecision },
       'What should I do?'
-    ),
-    React.createElement(
-      'button',
-      { onClick: onRemoveAll },
-      'Remove All'
     ),
     React.createElement(
       'ol',

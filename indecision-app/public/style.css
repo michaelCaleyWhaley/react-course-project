@@ -1,0 +1,32 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  font-family: Helvetica, sans-serif;
+}
+
+body {
+  min-height: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.indec__header {
+  text-align: left;
+  padding: 1em 0;
+  background-color: darkslategrey;
+  color: #f8f3f3;
+}
+.indec__title {
+  margin: 0;
+}
+.indec__option {
+  display: flex;
+  justify-content: space-between;
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -12,7 +12,7 @@
     "start": "",
     "watch": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
     "server": "live-server public",
-    "dev": "live-server public | babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch"
+    "dev": "live-server public | babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch | sass ./src/style.scss ./public/style.css --watch"
   },
   "devDependencies": {}
 }

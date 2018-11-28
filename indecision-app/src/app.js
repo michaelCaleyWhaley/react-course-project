@@ -1,8 +1,8 @@
 
 // JSX
 const app = {
-  title: 'The Daily Mail',
-  subTitle: 'Nick Cage wins oscar',
+  title: 'Indecision',
+  subTitle: 'Put your life in the hands of a computer',
   options: []
 };
 
@@ -37,14 +37,21 @@ const onMakeDecision = () => {
 };
 
 const renderApp = () => {
-  const {length} = app.options;
+  const { length } = app.options;
   const template = (
-    <div>
-      <h1>{app.title}</h1>
-      {app.subTitle && <p>{app.subTitle}</p>}
-      <p>{(app.options && app.options.length) > 0 ? "Here are your options" : "No options"}</p>
+    <div className="indec">
+      <div className="indec__header">
+        <h1 className="indec__title">{app.title}</h1>
+        {app.subTitle && <p className="indec__subtitle">{app.subTitle}</p>}
+      </div>
+
+
+      <div className="indec__option">
+        <p>{(app.options && app.options.length) > 0 ? "Your options" : "No options"}</p>
+        <button onClick={onRemoveAll}>Remove All</button>
+      </div>
       <button disabled={length <= 0} onClick={onMakeDecision}>What should I do?</button>
-      <button onClick={onRemoveAll}>Remove All</button>
+
       <ol>
         {
           createOptionsJSX()
