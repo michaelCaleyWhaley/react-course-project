@@ -38,11 +38,14 @@ var createOptionsJSX = function createOptionsJSX() {
 };
 
 var onMakeDecision = function onMakeDecision() {
-  var randomNum = Math.random().floor();
-  console.log(randomNum);
+  var randomNum = Math.floor(Math.random() * length);
+  var option = app.options[randomNum];
+  alert(option);
 };
 
 var renderApp = function renderApp() {
+  var length = app.options.length;
+
   var template = React.createElement(
     'div',
     null,
@@ -63,7 +66,7 @@ var renderApp = function renderApp() {
     ),
     React.createElement(
       'button',
-      { onClick: onMakeDecision },
+      { disabled: length <= 0, onClick: onMakeDecision },
       'What should I do?'
     ),
     React.createElement(

@@ -31,17 +31,19 @@ const createOptionsJSX = () => {
 };
 
 const onMakeDecision = () => {
-  const randomNum = Math.random().floor();
-  console.log(randomNum);
+  const randomNum = Math.floor((Math.random() * length));
+  const option = app.options[randomNum];
+  alert(option);
 };
 
 const renderApp = () => {
+  const {length} = app.options;
   const template = (
     <div>
       <h1>{app.title}</h1>
       {app.subTitle && <p>{app.subTitle}</p>}
       <p>{(app.options && app.options.length) > 0 ? "Here are your options" : "No options"}</p>
-      <button onClick={onMakeDecision}>What should I do?</button>
+      <button disabled={length <= 0} onClick={onMakeDecision}>What should I do?</button>
       <button onClick={onRemoveAll}>Remove All</button>
       <ol>
         {
