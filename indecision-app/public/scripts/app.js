@@ -31,7 +31,9 @@ var createOptionsJSX = function createOptionsJSX() {
   return app.options.map(function (option, index) {
     return React.createElement(
       'li',
-      { key: "option:" + index },
+      { className: 'indec__option__list__list-item', key: "option:" + index },
+      index + 1,
+      '. ',
       option
     );
   });
@@ -53,48 +55,60 @@ var renderApp = function renderApp() {
       'div',
       { className: 'indec__header' },
       React.createElement(
-        'h1',
-        { className: 'indec__title' },
-        app.title
-      ),
-      app.subTitle && React.createElement(
-        'p',
-        { className: 'indec__subtitle' },
-        app.subTitle
+        'div',
+        { className: 'indec__center' },
+        React.createElement(
+          'h1',
+          { className: 'indec__title' },
+          app.title
+        ),
+        app.subTitle && React.createElement(
+          'p',
+          { className: 'indec__subtitle' },
+          app.subTitle
+        )
       )
     ),
     React.createElement(
       'div',
-      { className: 'indec__option' },
+      { className: 'indec__center' },
       React.createElement(
-        'p',
-        null,
-        (app.options && app.options.length) > 0 ? "Your options" : "No options"
+        'button',
+        { className: 'indec__decision-button', disabled: length <= 0, onClick: onMakeDecision },
+        'What should I do?'
       ),
       React.createElement(
-        'button',
-        { onClick: onRemoveAll },
-        'Remove All'
-      )
-    ),
-    React.createElement(
-      'button',
-      { disabled: length <= 0, onClick: onMakeDecision },
-      'What should I do?'
-    ),
-    React.createElement(
-      'ol',
-      null,
-      createOptionsJSX()
-    ),
-    React.createElement(
-      'form',
-      { onSubmit: onFormSubmit },
-      React.createElement('input', { type: 'text', name: 'option' }),
-      React.createElement(
-        'button',
-        null,
-        'Add Option'
+        'div',
+        { className: 'indec__option' },
+        React.createElement(
+          'div',
+          { className: 'indec__option__title' },
+          React.createElement(
+            'p',
+            null,
+            (app.options && app.options.length) > 0 ? "Your options" : "No options"
+          ),
+          React.createElement(
+            'button',
+            { className: 'indec__button', onClick: onRemoveAll },
+            'Remove All'
+          )
+        ),
+        React.createElement(
+          'ul',
+          { className: 'indec__option__list' },
+          createOptionsJSX()
+        ),
+        React.createElement(
+          'form',
+          { className: 'indec__option__form', onSubmit: onFormSubmit },
+          React.createElement('input', { type: 'text', name: 'option' }),
+          React.createElement(
+            'button',
+            { className: 'indec__button' },
+            'Add Option'
+          )
+        )
       )
     )
   );
