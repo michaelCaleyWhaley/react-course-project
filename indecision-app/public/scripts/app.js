@@ -102,7 +102,7 @@ var renderApp = function renderApp() {
         React.createElement(
           'form',
           { className: 'indec__option__form', onSubmit: onFormSubmit },
-          React.createElement('input', { type: 'text', name: 'option' }),
+          React.createElement('input', { className: 'indec__option__form__input', type: 'text', name: 'option' }),
           React.createElement(
             'button',
             { className: 'indec__button' },

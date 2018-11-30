@@ -88,6 +88,11 @@ p {
   display: flex;
   justify-content: space-between;
 }
+.indec__option__form__input {
+  flex: 1;
+  margin-right: 0.5em;
+  border-radius: 3px;
+}
 .indec__button {
   height: auto;
   padding: 0.5em 1em;
