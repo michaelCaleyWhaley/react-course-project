@@ -10,12 +10,26 @@ class IndecisionApp extends React.Component {
     };
   }
 
-  componentDidMount(){
-    // console.log('Mount');
+  componentDidMount() {
+    const json = JSON.parse(localStorage.getItem("options"));
+    if (json) {
+      this.setState(() => {
+        options: json;
+      });
+    }
   }
 
-  componentDidUpdate(){
-    console.log('Update');
+  // has access to arguements prevProps and prevState
+  // saves list to local storage on update
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.options !== this.state.options) {
+      const json = JSON.stringify(this.state.options);
+      localStorage.setItem("options", json);
+    }
+  }
+
+  componentWillUnmount() {
+    console.log("component will unmount");
   }
 
   handleDeleteOptions() {
@@ -24,7 +38,9 @@ class IndecisionApp extends React.Component {
 
   handleDeleteOption(optionToRemove) {
     this.setState(prevState => {
-      return { options: prevState.options.filter(option => option !== optionToRemove) };
+      return {
+        options: prevState.options.filter(option => option !== optionToRemove)
+      };
     });
   }
 

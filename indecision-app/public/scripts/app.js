@@ -31,12 +31,29 @@ var IndecisionApp = function (_React$Component) {
   _createClass(IndecisionApp, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      // console.log('Mount');
+      var json = JSON.parse(localStorage.getItem("options"));
+      if (json) {
+        this.setState(function () {
+          options: json;
+        });
+      }
     }
+
+    // has access to arguements prevProps and prevState
+    // saves list to local storage on update
+
   }, {
     key: "componentDidUpdate",
-    value: function componentDidUpdate() {
-      console.log('Update');
+    value: function componentDidUpdate(prevProps, prevState) {
+      if (prevState.options !== this.state.options) {
+        var json = JSON.stringify(this.state.options);
+        localStorage.setItem("options", json);
+      }
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      console.log("component will unmount");
     }
   }, {
     key: "handleDeleteOptions",
@@ -49,9 +66,11 @@ var IndecisionApp = function (_React$Component) {
     key: "handleDeleteOption",
     value: function handleDeleteOption(optionToRemove) {
       this.setState(function (prevState) {
-        return { options: prevState.options.filter(function (option) {
+        return {
+          options: prevState.options.filter(function (option) {
             return option !== optionToRemove;
-          }) };
+          })
+        };
       });
     }
   }, {
