@@ -10,9 +10,9 @@
   },
   "scripts": {
     "start": "",
-    "watch": "babel src/es6-classes.js --out-file=public/scripts/es6-classes.js --presets=env,react --watch",
+    "watch": "babel src/counter.js --out-file=public/scripts/counter.js --presets=env,react --watch",
     "server": "live-server public",
-    "dev": "live-server public | babel src/es6-classes.js --out-file=public/scripts/es6-classes.js --presets=env,react --watch"
+    "dev": "live-server public | babel src/counter.js --out-file=public/scripts/counter.js --presets=env,react --watch"
   },
   "devDependencies": {}
 }
