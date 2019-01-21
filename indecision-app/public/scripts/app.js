@@ -31,11 +31,16 @@ var IndecisionApp = function (_React$Component) {
   _createClass(IndecisionApp, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var json = JSON.parse(localStorage.getItem("options"));
-      if (json) {
-        this.setState(function () {
-          options: json;
-        });
+      try {
+        var json = localStorage.getItem("options");
+        var options = JSON.parse(json);
+        if (options) {
+          this.setState(function () {
+            return { options: options };
+          });
+        }
+      } catch (e) {
+        // Do nothing
       }
     }
 
