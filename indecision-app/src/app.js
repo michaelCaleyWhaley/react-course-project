@@ -6,7 +6,7 @@ class IndecisionApp extends React.Component {
     this.handlePick = this.handlePick.bind(this);
     this.handleAddOption = this.handleAddOption.bind(this);
     this.state = {
-      options: this.props.options
+      options: []
     };
   }
 
@@ -83,10 +83,6 @@ class IndecisionApp extends React.Component {
   }
 }
 
-IndecisionApp.defaultProps = {
-  options: []
-};
-
 // CLASS BASES COMPONENT - doesn't require state so converted to stateless functional component
 // class Header extends React.Component {
 //   render() {
@@ -131,6 +127,7 @@ const Options = props => {
   return (
     <div>
       <button onClick={props.handleDeleteOptions}>Remove All</button>
+      {props.options.length === 0 && <p>Please add an option to get started!</p>}
       <ul>
         {props.options.map((option, index) => {
           return (
@@ -178,6 +175,11 @@ class AddOption extends React.Component {
     const error = this.props.handleAddOption(option);
 
     this.setState(() => ({ error }));
+
+    if(!error) {
+      e.target.elements.option.value = '';
+    }
+
   }
 
   render() {
@@ -194,6 +196,6 @@ class AddOption extends React.Component {
 }
 
 ReactDOM.render(
-  <IndecisionApp options={["Devils den", "Second District"]} />,
+  <IndecisionApp />,
   document.getElementById("app")
 );

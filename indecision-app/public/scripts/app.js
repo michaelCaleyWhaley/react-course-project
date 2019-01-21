@@ -186,6 +186,11 @@ var Options = function Options(props) {
       { onClick: props.handleDeleteOptions },
       "Remove All"
     ),
+    props.options.length === 0 && React.createElement(
+      "p",
+      null,
+      "Please add an option to get started!"
+    ),
     React.createElement(
       "ul",
       null,
@@ -245,6 +250,10 @@ var AddOption = function (_React$Component2) {
       this.setState(function () {
         return { error: error };
       });
+
+      if (!error) {
+        e.target.elements.option.value = '';
+      }
     }
   }, {
     key: "render",
