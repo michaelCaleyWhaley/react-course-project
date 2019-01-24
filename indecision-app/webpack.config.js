@@ -15,5 +15,8 @@ module.exports = {
         exclude: /node_modules/
       }
     ]
-  }
+  },
+  devtool: 'cheap-module-eval-source-map'
 };
+
+// source map option allows the console to map errors and log to the original code instead of the webpack generated code
