@@ -5,14 +5,24 @@
   "author": "Michael Caley",
   "license": "MIT",
   "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.0.5",
     "babel-preset-env": "1.5.2",
-    "babel-preset-react": "6.24.1"
+    "babel-preset-react": "6.24.1",
+    "live-server": "^1.2.1",
+    "path": "^0.12.7",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "webpack": "^4.29.0"
   },
   "scripts": {
-    "start": "",
-    "watch": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
-    "server": "live-server public",
-    "dev": "live-server public | babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch | sass ./src/style.scss ./public/style.css --watch"
+    "serve": "live-server public/",
+    "build": "webpack --watch",
+    "build-dev": "webpack --watch | live-server public/",
+    "build-babel": "babel src src/app.js --out-file=public/scripts/app.js --presets=env,react --watch"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "webpack-cli": "^3.2.1"
+  }
 }
