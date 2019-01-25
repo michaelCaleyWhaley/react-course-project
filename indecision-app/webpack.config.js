@@ -16,7 +16,10 @@ module.exports = {
       }
     ]
   },
-  devtool: 'cheap-module-eval-source-map'
+  devtool: 'cheap-module-eval-source-map',
+  devServer: {
+    contentBase: path.join(__dirname, "/public"),
+  }
 };
 
-// source map option allows the console to map errors and log to the original code instead of the webpack generated code
+// devtool - source map option allows the console to map errors and log to the original code instead of the webpack generated code
