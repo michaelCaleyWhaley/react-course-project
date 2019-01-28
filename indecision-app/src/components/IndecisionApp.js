@@ -5,12 +5,15 @@ import AddOption from "./AddOption";
 import Action from "./Action";
 import Options from "./Options";
 
+import OptionModal from "./OptionModal";
+
 class IndecisionApp extends React.Component {
   // using the the plugin for babel named: babel-plugin-transform-class-properties
   // this plugin allows you to remove the constructor from the component. It always removes the need to bind methods by instatiating them as a property with an anonymous function instead
 
   state = {
-    options: []
+    options: [],
+    selectedOption: undefined
   };
 
   handleDeleteOptions = () => {
@@ -28,7 +31,20 @@ class IndecisionApp extends React.Component {
   handlePick = () => {
     const maxOptionPos = this.state.options.length;
     const randomNo = Math.floor(Math.random() * maxOptionPos);
-    alert(this.state.options[randomNo]);
+    // alert(this.state.options[randomNo]);
+    this.setState(() => {
+      return {
+        selectedOption: this.state.options[randomNo]
+      };
+    });
+  };
+
+  handleClearSelectedOption = () => {
+    this.setState(() => {
+      return {
+        selectedOption: undefined
+      };
+    });
   };
 
   handleAddOption = option => {
@@ -81,6 +97,7 @@ class IndecisionApp extends React.Component {
           handleDeleteOption={this.handleDeleteOption}
         />
         <AddOption handleAddOption={this.handleAddOption} />
+        <OptionModal selectedOption={this.state.selectedOption} handleClearSelectedOption={this.handleClearSelectedOption} />
       </div>
     );
   }
